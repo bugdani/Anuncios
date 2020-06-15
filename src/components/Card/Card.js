@@ -21,6 +21,12 @@ export default function Card(props) {
     return `Publicado hace ${diff} dias`;
   };
 
+  const getTruncateText = (text) => {
+    if (text.length > 300) {
+      return `${text.substring(1, 300)}...`;
+    }
+  };
+
   return (
     <>
       <div className="card mb-3">
@@ -56,7 +62,9 @@ export default function Card(props) {
               <h5 className="card-subtitle">
                 {posting.posting_location.zone}, {posting.posting_location.city}
               </h5>
-              <p className="card-text mt-5">{posting.posting_description}</p>
+              <p className="card-text mt-5 .text-truncate">
+                {getTruncateText(posting.posting_description)}
+              </p>
               <div className="form-row">
                 <div className="col">
                   <p className="card-text font-weight-bold">
