@@ -28,7 +28,10 @@ export default function Card(props) {
 
   return (
     <>
-      <div className="card mb-3" style={{ maxWidth: 900 }}>
+      <div
+        className={`card mb-3 ${posting.publication_plan.toLowerCase()}`}
+        style={{ maxWidth: 900 }}
+      >
         <div className="row no-gutters">
           <div className="col-md-4">
             <div className="form-row header-image">
