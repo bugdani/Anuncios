@@ -27,7 +27,7 @@ export default function Card(props) {
         <div className="row no-gutters">
           <div className="col-md-4">
             <div className="card">
-              <div className="form-row">
+              <div className="form-row header-image">
                 <div className="col">
                   <p className="card-text">{posting.publication_plan}</p>
                 </div>
@@ -41,10 +41,10 @@ export default function Card(props) {
                 alt="..."
               />
               <div className="card-body text-left">
-                <p className="card-text">
-                  {posting.posting_prices[0].price.amount}
+                <p className="card-text price">
+                  $ {posting.posting_prices[0].price.amount}
                 </p>
-                <p className="card-text">
+                <p className="card-text expenses">
                   {getExpenses(posting.posting_prices[0].expenses)}
                 </p>
               </div>
@@ -57,13 +57,13 @@ export default function Card(props) {
                 {posting.posting_location.zone}, {posting.posting_location.city}
               </h5>
               <p className="card-text mt-5">{posting.posting_description}</p>
-              <div class="form-row">
-                <div class="col">
+              <div className="form-row">
+                <div className="col">
                   <p className="card-text font-weight-bold">
                     {getDifferenceDays(posting.publish_date)}
                   </p>
                 </div>
-                <div class="col">
+                <div className="col">
                   <button className="btn btn-light float-right card__contact-button">
                     Contactar
                   </button>
