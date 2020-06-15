@@ -11,5 +11,15 @@
                 fill: #bdbdbd;
             }
         }
+        &__type-operation {
+            &__title {
+                font-weight: bold;
+                font-size: 16px;
+            }
+        }
+    }
+    &__body-title {
+        font-weight: bold;
+        font-size: 16px;
     }
 }
