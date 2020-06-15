@@ -6,32 +6,45 @@ import { Accordion, Card, Form } from "react-bootstrap";
 export default function Sidebar() {
   return (
     <>
-      <Card>
-        <Card.Body>
-          <Card.Title>Filtrado actual</Card.Title>
+      <Card className="sidebar">
+        <Card.Body className="sidebar__body text-left">
+          <Card.Text className="sidebar__body-title">Filtrado actual</Card.Text>
           <hr />
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" className="sidebar__body-search">
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey="0">
+              <Accordion.Toggle
+                as={Card.Text}
+                eventKey="0"
+                className="sidebar__body-search-title"
+              >
                 Direccion
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Buscar por direccion"
-                  />
-                  <button type="submit" className="btn btn-light">
-                    <Search />
-                  </button>
+                  <div className="form-row">
+                    <div className="col">
+                      <input
+                        className="form-control sidebar__body-search-input"
+                        type="text"
+                        placeholder="Buscar por direccion"
+                      />
+                    </div>
+                    <div className="col">
+                      <button
+                        type="submit"
+                        className="btn btn-light sidebar__body-search-button"
+                      >
+                        <Search className="sidebar__body-search-button-icon" />
+                      </button>
+                    </div>
+                  </div>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
           </Accordion>
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" className="">
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey="0">
+              <Accordion.Toggle as={Card.Text} eventKey="0">
                 Tipo de operacion
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
