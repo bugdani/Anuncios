@@ -27,16 +27,14 @@ export default function Card(props) {
         <div className="row no-gutters">
           <div className="col-md-4">
             <div className="card">
-              <div class="form-row">
-                <div class="col">
+              <div className="form-row">
+                <div className="col">
                   <p className="card-text">{posting.publication_plan}</p>
                 </div>
-                <div class="col">
-                  <Favorite />
+                <div className="col">
+                  <Favorite className="card__icon-favorite" />
                 </div>
               </div>
-              <div></div>
-
               <img
                 src={posting.posting_picture}
                 className="card-img"
