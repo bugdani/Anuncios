@@ -8,6 +8,8 @@ export default function Sidebar() {
     <>
       <Card>
         <Card.Body>
+          <Card.Title>Filtrado actual</Card.Title>
+          <hr />
           <Accordion defaultActiveKey="0">
             <Card>
               <Accordion.Toggle as={Card.Header} eventKey="0">
