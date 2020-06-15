@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App mt-5">
       <div className="row">
-        <div className="col-sm-4">
+        <div className="col-sm-4 d-flex flex-row-reverse">
           <Sidebar />
         </div>
         <div className="col-sm-8">

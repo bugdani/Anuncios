@@ -1,0 +1,15 @@
+.sidebar {
+    &__body {
+        &__search {
+            &__title {
+                font-weight: bold;
+                font-size: 16px;
+            }
+            &__button-icon {
+                width: 18px !important;
+                height: 18px;
+                fill: #bdbdbd;
+            }
+        }
+    }
+}

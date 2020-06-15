@@ -6,16 +6,16 @@ import { Accordion, Card, Form } from "react-bootstrap";
 export default function Sidebar() {
   return (
     <>
-      <Card className="sidebar">
+      <Card className="sidebar .float-right" style={{ maxWidth: 300 }}>
         <Card.Body className="sidebar__body text-left">
           <Card.Text className="sidebar__body-title">Filtrado actual</Card.Text>
           <hr />
-          <Accordion defaultActiveKey="0" className="sidebar__body-search">
-            <Card>
+          <Accordion defaultActiveKey="0" className="sidebar__body__search">
+            <Card className="border-0">
               <Accordion.Toggle
                 as={Card.Text}
                 eventKey="0"
-                className="sidebar__body-search-title"
+                className="sidebar__body__search__title"
               >
                 Direccion
               </Accordion.Toggle>
@@ -24,7 +24,7 @@ export default function Sidebar() {
                   <div className="form-row">
                     <div className="col">
                       <input
-                        className="form-control sidebar__body-search-input"
+                        className="form-control sidebar__body__search__input"
                         type="text"
                         placeholder="Buscar por direccion"
                       />
@@ -32,9 +32,9 @@ export default function Sidebar() {
                     <div className="col">
                       <button
                         type="submit"
-                        className="btn btn-light sidebar__body-search-button"
+                        className="btn btn-light sidebar__body__search__button"
                       >
-                        <Search className="sidebar__body-search-button-icon" />
+                        <Search className="sidebar__body__search__button-icon" />
                       </button>
                     </div>
                   </div>
@@ -43,7 +43,7 @@ export default function Sidebar() {
             </Card>
           </Accordion>
           <Accordion defaultActiveKey="0" className="">
-            <Card>
+            <Card className="border-0">
               <Accordion.Toggle as={Card.Text} eventKey="0">
                 Tipo de operacion
               </Accordion.Toggle>
