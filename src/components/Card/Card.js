@@ -35,7 +35,7 @@ export default function Card(props) {
             <div className="card image-price-expense border-0">
               <div className="form-row header-image">
                 <div className="col text-left">
-                  <p className="card-text badge badge-pill badge-info">
+                  <p className="card-text badge badge-pill badge-info publication_plan">
                     {posting.publication_plan}
                   </p>
                 </div>

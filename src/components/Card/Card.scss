@@ -31,7 +31,7 @@
 }
 
 .card__icon-favorite {
-    width: 22px;
+    width: 15px;
     fill: #bdbdbd;
     &:hover {
         cursor: pointer;
@@ -90,4 +90,9 @@ span.press {
     font-size: 14px;
     visibility: visible;
     animation: fade 1s;
+}
+
+.publication_plan {
+    margin-left: 5px;
+    margin-top: 5px;
 }
