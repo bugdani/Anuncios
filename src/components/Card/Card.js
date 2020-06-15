@@ -53,18 +53,18 @@ export default function Card(props) {
             </div>
           </div>
           <div className="col-md-8">
-            <div className="card-body">
+            <div className="card-body text-left">
               <h5 className="card-title">{posting.title}</h5>
               <h5 className="card-subtitle">
                 {posting.posting_location.zone}, {posting.posting_location.city}
               </h5>
-              <p className="card-text">{posting.posting_description}</p>
-            </div>
-            <div className="card-bottom">
-              <p className="card-text">
+              <p className="card-text mt-5">{posting.posting_description}</p>
+              <p className="card-text font-weight-bold">
                 {getDifferenceDays(posting.publish_date)}
               </p>
-              <button>Contactar</button>
+              <button className="btn btn-light card__contact-button">
+                Contactar
+              </button>
             </div>
           </div>
         </div>
