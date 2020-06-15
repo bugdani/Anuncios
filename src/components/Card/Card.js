@@ -66,7 +66,7 @@ export default function Card(props) {
                   </p>
                 </div>
                 <div class="col">
-                  <button className="btn btn-light card__contact-button">
+                  <button className="btn btn-light float-right card__contact-button">
                     Contactar
                   </button>
                 </div>
