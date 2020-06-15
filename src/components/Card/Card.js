@@ -1,6 +1,7 @@
 import React from "react";
 import "./Card.scss";
 import moment from "moment";
+import { ReactComponent as Favorite } from "../../assets/img/corazon.svg";
 
 export default function Card(props) {
   const { posting } = props;
@@ -26,17 +27,16 @@ export default function Card(props) {
         <div className="row no-gutters">
           <div className="col-md-4">
             <div className="card">
-              <p className="card-text">{posting.publication_plan}</p>
-              <svg
-                className="bi bi-heart-fill"
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-              </svg>
+              <div class="form-row">
+                <div class="col">
+                  <p className="card-text">{posting.publication_plan}</p>
+                </div>
+                <div class="col">
+                  <Favorite />
+                </div>
+              </div>
+              <div></div>
+
               <img
                 src={posting.posting_picture}
                 className="card-img"
