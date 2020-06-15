@@ -29,10 +29,10 @@ export default function Card(props) {
 
   return (
     <>
-      <div className="card mb-3">
+      <div className="card mb-3" style={{ maxWidth: 900 }}>
         <div className="row no-gutters">
           <div className="col-md-4">
-            <div className="card">
+            <div className="card image-price-expense border-0">
               <div className="form-row header-image">
                 <div className="col text-left">
                   <p className="card-text badge badge-pill badge-info">
@@ -67,7 +67,7 @@ export default function Card(props) {
               <h5 className="card-subtitle">
                 {posting.posting_location.zone}, {posting.posting_location.city}
               </h5>
-              <p className="card-text mt-5 .text-truncate">
+              <p className="card-text card-description mt-5">
                 {getTruncateText(posting.posting_description)}
               </p>
               <div className="form-row">

@@ -6,12 +6,20 @@
         background: coral !important;
         color: #ffffff !important;
     }
-    .card-text {}
+    .card-description {
+        padding-bottom: 40px;
+        font-size: 14px;
+    }
+}
+
+.image-price-expense {
+    width: 300px;
 }
 
 .price {
     font-size: 25px;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .header-image {
@@ -50,11 +58,14 @@ i:hover {
     color: #666;
 }
 
+
+/*
 i:before {
     font-family: fontawesome;
     content: '\f004';
     font-style: normal;
 }
+*/
 
 span {
     position: absolute;

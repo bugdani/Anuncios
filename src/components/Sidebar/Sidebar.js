@@ -7,12 +7,12 @@ export default function Sidebar() {
   return (
     <>
       <Card>
-        <Card.Body>
-          <Card.Title>Filtrado actual</Card.Title>
+        <Card.Body className="text-left">
+          <Card.Text>Filtrado actual</Card.Text>
           <hr />
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" className="">
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey="0">
+              <Accordion.Toggle as={Card.Text} eventKey="0">
                 Direccion
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
@@ -29,9 +29,9 @@ export default function Sidebar() {
               </Accordion.Collapse>
             </Card>
           </Accordion>
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" className="">
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey="0">
+              <Accordion.Toggle as={Card.Text} eventKey="0">
                 Tipo de operacion
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
