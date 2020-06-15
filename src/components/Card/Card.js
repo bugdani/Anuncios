@@ -40,7 +40,7 @@ export default function Card(props) {
                 className="card-img"
                 alt="..."
               />
-              <div className="card-body">
+              <div className="card-body text-left">
                 <p className="card-text">
                   {posting.posting_prices[0].price.amount}
                 </p>
