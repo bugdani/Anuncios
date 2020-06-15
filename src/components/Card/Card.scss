@@ -1,15 +1,24 @@
 .card {
     .card-title {
         color: #1ec6ff;
+        font-size: 16px;
     }
     &__contact-button {
         background: coral !important;
         color: #ffffff !important;
     }
-    .card-description {
-        padding-bottom: 40px;
-        font-size: 14px;
+    .card-subtitle {
+        font-size: 16px;
     }
+    .card-description {
+        font-size: 14px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+.price-body {
+    padding-left: 20px;
 }
 
 .image-price-expense {

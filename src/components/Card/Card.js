@@ -1,7 +1,6 @@
 import React from "react";
 import "./Card.scss";
 import moment from "moment";
-import { ReactComponent as Favorite } from "../../assets/img/corazon.svg";
 
 export default function Card(props) {
   const { posting } = props;
@@ -32,33 +31,22 @@ export default function Card(props) {
       <div className="card mb-3" style={{ maxWidth: 900 }}>
         <div className="row no-gutters">
           <div className="col-md-4">
-            <div className="card image-price-expense border-0">
-              <div className="form-row header-image">
-                <div className="col text-left">
-                  <p className="card-text badge badge-pill badge-info publication_plan">
-                    {posting.publication_plan}
-                  </p>
-                </div>
-                <div className="col text-right">
-                  <i>
-                    <Favorite className="card__icon-favorite" />
-                  </i>
-                  <span>liked!</span>
-                </div>
-              </div>
-              <img
-                src={posting.posting_picture}
-                className="card-img"
-                alt="..."
-              />
-              <div className="card-body text-left">
-                <p className="card-text price">
-                  $ {posting.posting_prices[0].price.amount}
-                </p>
-                <p className="card-text expenses">
-                  {getExpenses(posting.posting_prices[0].expenses)}
+            <div className="form-row header-image">
+              <div className="col text-left">
+                <p className="card-text badge badge-pill badge-info publication_plan">
+                  {posting.publication_plan}
                 </p>
               </div>
+              <div className="col text-right"></div>
+            </div>
+            <img src={posting.posting_picture} className="card-img" alt="..." />
+            <div className="price-body text-left">
+              <p className="price">
+                $ {posting.posting_prices[0].price.amount}
+              </p>
+              <p className="expenses">
+                {getExpenses(posting.posting_prices[0].expenses)}
+              </p>
             </div>
           </div>
           <div className="col-md-8">
@@ -67,7 +55,7 @@ export default function Card(props) {
               <h5 className="card-subtitle">
                 {posting.posting_location.zone}, {posting.posting_location.city}
               </h5>
-              <p className="card-text card-description mt-5">
+              <p className="card-text card-description mt-4">
                 {getTruncateText(posting.posting_description)}
               </p>
               <div className="form-row">
