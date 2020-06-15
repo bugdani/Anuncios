@@ -59,12 +59,18 @@ export default function Card(props) {
                 {posting.posting_location.zone}, {posting.posting_location.city}
               </h5>
               <p className="card-text mt-5">{posting.posting_description}</p>
-              <p className="card-text font-weight-bold">
-                {getDifferenceDays(posting.publish_date)}
-              </p>
-              <button className="btn btn-light card__contact-button">
-                Contactar
-              </button>
+              <div class="form-row">
+                <div class="col">
+                  <p className="card-text font-weight-bold">
+                    {getDifferenceDays(posting.publish_date)}
+                  </p>
+                </div>
+                <div class="col">
+                  <button className="btn btn-light card__contact-button">
+                    Contactar
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
