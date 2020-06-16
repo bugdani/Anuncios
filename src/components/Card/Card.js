@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Card.scss";
 import moment from "moment";
 import { Button } from "react-bootstrap";
 import ModalContact from "../Modal";
+import ModalInformation from "../ModalInformation";
 
 export default function Card(props) {
   const { posting } = props;
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const contactado = true;
 
   const getExpenses = (expense) => {
     if (!expense) {
@@ -77,10 +79,17 @@ export default function Card(props) {
                   >
                     Contactar
                   </Button>
-                  <ModalContact
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                  />
+                  {!contactado ? (
+                    <ModalContact
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
+                  ) : (
+                    <ModalInformation
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
+                  )}
                 </div>
               </div>
             </div>

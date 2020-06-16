@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { POSTINGS_STORAGE } from "../../utils/constants";
 
 export default function ModalContact(props) {
   return (
