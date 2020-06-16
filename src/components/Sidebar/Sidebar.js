@@ -21,7 +21,7 @@ export default function Sidebar() {
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
                 <div className="form-row">
-                  <div className="col">
+                  <div className="col search-form">
                     <input
                       className="form-control sidebar__body__search__input"
                       type="text"
@@ -54,25 +54,25 @@ export default function Sidebar() {
                     type="radio"
                     label="Comprar"
                     name="formHorizontalRadios"
-                    id="formHorizontalRadios1"
+                    id="1"
                   />
                   <Form.Check
                     type="radio"
                     label="Alquilar"
                     name="formHorizontalRadios"
-                    id="formHorizontalRadios2"
+                    id="3"
                   />
                   <Form.Check
                     type="radio"
                     label="Temporal"
                     name="formHorizontalRadios"
-                    id="formHorizontalRadios3"
+                    id="2"
                   />
                   <Form.Check
                     type="radio"
                     label="Todos"
                     name="formHorizontalRadios"
-                    id="formHorizontalRadios3"
+                    id="4"
                   />
                 </Col>
               </Accordion.Collapse>

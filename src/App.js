@@ -1,7 +1,6 @@
 import React from "react";
 import useFetch from "./hooks/useFetch";
 import { URL_API_POSTINGS } from "./utils/constants";
-import "./App.css";
 import Card from "./components/Card";
 import Loading from "./components/Loading";
 import Sidebar from "./components/Sidebar";
