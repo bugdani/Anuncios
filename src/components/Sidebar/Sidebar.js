@@ -4,12 +4,21 @@ import { ReactComponent as Search } from "../../assets/img/buscar.svg";
 import { Accordion, Card, Form, Col } from "react-bootstrap";
 
 export default function Sidebar(props) {
-  const { reloadList } = props;
+  const { reloadList, reloadListForSearch } = props;
   const [operation, setOperation] = useState(4);
+  const [querySearch, setQuerySearch] = useState("");
 
   useEffect(() => {
     reloadList(operation);
   }, [operation]);
+
+  const handleInputChange = (event) => {
+    console.log(event);
+
+    const query = event.currentTarget.value;
+    setQuerySearch(query);
+    reloadListForSearch(querySearch);
+  };
 
   return (
     <>
@@ -33,10 +42,12 @@ export default function Sidebar(props) {
                       className="form-control sidebar__body__search__input"
                       type="text"
                       placeholder="Buscar por direccion"
+                      onChange={handleInputChange}
                     />
                     <button
-                      type="submit"
+                      type="button"
                       className="btn btn-light sidebar__body__search__button"
+                      onClick={() => reloadListForSearch(querySearch)}
                     >
                       <Search className="sidebar__body__search__button-icon" />
                     </button>

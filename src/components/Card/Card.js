@@ -8,10 +8,8 @@ import { priceSplitter } from "../../utils/numberFormat";
 import { ReactComponent as Time } from "../../assets/img/tiempo.svg";
 
 export default function Card(props) {
-  const { posting, operation } = props;
+  const { posting, operation, querySearch } = props;
   const [modalShow, setModalShow] = useState(false);
-
-  const [addFavorite, setAddFavorite] = useState(false);
   const [contacted, setContacted] = useState(false);
 
   const getExpenses = (expense) => {
@@ -35,10 +33,20 @@ export default function Card(props) {
     }
   };
 
-  const setInvisible = (valueOperation, valuePosting) => {
-    if (valueOperation === 4) {
+  const setInvisible = (valueOperation, valueQuerySearch) => {
+    console.log(valueOperation, valueQuerySearch);
+
+    if (valueOperation === 4 && valueQuerySearch === "") {
+      //NO HAY FILTRO
       return "";
-    } else if (valueOperation !== valuePosting) {
+    } else if (valueQuerySearch !== "") {
+      //FILTRO POR BUSQUEDA
+      if (posting.posting_location.address.includes(valueQuerySearch)) {
+        return "";
+      } else {
+        return "none";
+      }
+    } else if (valueOperation !== posting.operation_type.operation_type_id) {
       return "none";
     }
   };
@@ -51,10 +59,7 @@ export default function Card(props) {
         className={`card mb-3 ${posting.publication_plan.toLowerCase()}`}
         style={{
           maxWidth: 900,
-          display: setInvisible(
-            operation,
-            posting.operation_type.operation_type_id
-          ),
+          display: setInvisible(operation, querySearch),
         }}
       >
         <div className="row no-gutters">

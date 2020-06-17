@@ -9,6 +9,7 @@ function App() {
   const postingsResult = useFetch(URL_API_POSTINGS, null);
   const [reloadPostings, setReloadPostings] = useState(false);
   const [operation, setOperation] = useState(4);
+  const [querySearch, setQuerySearch] = useState("");
 
   useEffect(() => {
     console.log(reloadPostings);
@@ -17,13 +18,24 @@ function App() {
   const reloadList = (valueOperation) => {
     setReloadPostings(true);
     setOperation(valueOperation);
+    setQuerySearch("");
+  };
+
+  const reloadListForSearch = (query) => {
+    console.log(query);
+
+    setOperation(4);
+    setQuerySearch(query);
   };
 
   return (
     <div className="App mt-5">
-      <div className="row">
+      <div className="row" style={{ marginLeft: 0, marginRight: 0 }}>
         <div className="col-sm-4 d-flex flex-row-reverse">
-          <Sidebar reloadList={reloadList} />
+          <Sidebar
+            reloadList={reloadList}
+            reloadListForSearch={reloadListForSearch}
+          />
         </div>
         <div className="col-sm-8">
           {postingsResult.loading || !postingsResult.result ? (
@@ -34,6 +46,7 @@ function App() {
                 posting={posting}
                 key={posting.posting_id}
                 operation={operation}
+                querySearch={querySearch}
               />
             ))
           )}
