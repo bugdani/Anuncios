@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Sidebar.scss";
 import { ReactComponent as Search } from "../../assets/img/buscar.svg";
 import { Accordion, Card, Form, Col } from "react-bootstrap";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
+  const { reloadList } = props;
+  const [operation, setOperation] = useState(4);
+
+  useEffect(() => {
+    reloadList(operation);
+  }, [operation]);
+
   return (
     <>
       <Card className="sidebar p-2" style={{ maxWidth: 300, maxHeight: 450 }}>
@@ -55,24 +62,28 @@ export default function Sidebar() {
                     label="Comprar"
                     name="formHorizontalRadios"
                     id="1"
+                    onChange={() => setOperation(2)}
                   />
                   <Form.Check
                     type="radio"
                     label="Alquilar"
                     name="formHorizontalRadios"
                     id="3"
+                    onChange={() => setOperation(1)}
                   />
                   <Form.Check
                     type="radio"
                     label="Temporal"
                     name="formHorizontalRadios"
                     id="2"
+                    onChange={() => setOperation(3)}
                   />
                   <Form.Check
                     type="radio"
                     label="Todos"
                     name="formHorizontalRadios"
                     id="4"
+                    onChange={() => setOperation(4)}
                   />
                 </Col>
               </Accordion.Collapse>
