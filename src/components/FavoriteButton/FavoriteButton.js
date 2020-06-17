@@ -1,18 +1,19 @@
-import React from "react";
-import { Button } from "react-bootstrap";
+import React, { useState } from "react";
 import "./FavoriteButton.scss";
 import { ReactComponent as Favorite } from "../../assets/img/corazon.svg";
 
 export default function FavoriteButton(props) {
-  const { addFavorite } = props;
+  const { addFavorite, favorite } = props;
 
   return (
     <button
       type="button"
       className="btn btn-light btn-circle btn-sm"
-      onClick={() => addFavorite()}
+      onClick={() => {
+        addFavorite();
+      }}
     >
-      <Favorite className="icon-not-favorite" />
+      <Favorite className={favorite ? "icon-favorite" : "icon-not-favorite"} />
     </button>
   );
 }

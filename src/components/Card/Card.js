@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Card.scss";
 import moment from "moment";
 import { Button } from "react-bootstrap";
@@ -6,14 +6,21 @@ import ModalContact from "../Modal";
 import ModalInformation from "../ModalInformation";
 import FavoriteButton from "../FavoriteButton";
 import { priceSplitter } from "../../utils/numberFormat";
+import { getIndex } from "../../utils/getIndex";
 import { ReactComponent as Time } from "../../assets/img/tiempo.svg";
 import { POSTINGS_STORAGE } from "../../utils/constants";
 
 export default function Card(props) {
-  const { posting, operation, querySearch } = props;
+  const {
+    posting,
+    operation,
+    querySearch,
+    getAllPosting,
+    updateAllPosting,
+  } = props;
   const [modalShow, setModalShow] = useState(false);
   const [contacted, setContacted] = useState(false);
-  const [allConfiguration, setAllConfiguration] = useState([]);
+  const [favorite, setFavorite] = useState(false);
 
   const getExpenses = (expense) => {
     if (!expense) {
@@ -35,10 +42,7 @@ export default function Card(props) {
       return `${text.substring(1, 300)}...`;
     }
   };
-
   const setInvisible = (valueOperation, valueQuerySearch) => {
-    console.log(valueOperation, valueQuerySearch);
-
     if (valueOperation === 4 && valueQuerySearch === "") {
       return "";
     } else if (valueQuerySearch !== "") {
@@ -52,19 +56,33 @@ export default function Card(props) {
     }
   };
 
-  const deleteFavorite = (index) => {
-    allConfiguration.splice(index, 1);
-    setAllConfiguration(allConfiguration);
-    localStorage.setItem(POSTINGS_STORAGE, JSON.stringify(allConfiguration));
-  };
-
   const addFavorite = () => {
-    console.log("agregar como favorito");
+    let item = {};
+    let allConfigurationArray = [];
+    if (getAllPosting) {
+      allConfigurationArray = getAllPosting();
+    }
+    if (favorite) {
+      allConfigurationArray.splice(
+        getIndex(allConfigurationArray, posting.posting_id),
+        1
+      );
+      updateAllPosting(allConfigurationArray);
+      setFavorite(!favorite);
+    } else {
+      item = {
+        id: posting.posting_id,
+        isFavorite: !favorite,
+        isContacted: contacted,
+      };
+      allConfigurationArray.push(item);
+      updateAllPosting(allConfigurationArray);
+      setFavorite(true);
+    }
+    localStorage.setItem(POSTINGS_STORAGE, JSON.stringify(getAllPosting()));
   };
 
   const addContacted = () => {};
-
-  //getConfigPosting(posting);
 
   return (
     <>
@@ -84,7 +102,7 @@ export default function Card(props) {
                 </p>
               </div>
               <div className="col text-right">
-                <FavoriteButton addFavorite={addFavorite} />
+                <FavoriteButton addFavorite={addFavorite} favorite={favorite} />
               </div>
             </div>
             <img src={posting.posting_picture} className="card-img" alt="..." />
