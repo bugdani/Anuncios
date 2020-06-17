@@ -1,19 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { POSTINGS_STORAGE } from "../../utils/constants";
 
 export default function ModalContact(props) {
-  const { posting } = props;
+  const { posting, addContacted } = props;
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
 
-  const handleFormSubmit = (e) => {
-    const configPosting = {};
-    configPosting.posting_id = posting.posting_id;
-    configPosting.contacted = true;
-    if (configPosting.favorite === undefined) {
-      configPosting.favorite = false;
-    }
-    //const allPostingArray.push(configPosting);
-    localStorage.setItem(POSTINGS_STORAGE, JSON.stringify(configPosting));
+  const handleFormSubmit = (event) => {
+    addContacted();
+    event.preventDefault();
   };
 
   return (
@@ -37,16 +33,14 @@ export default function ModalContact(props) {
                 type="email"
                 placeholder="Ingresa tu email"
                 name="email"
-                id="email"
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="formBasicEmail1">
               <Form.Label>Telefono</Form.Label>
               <Form.Control
                 type="phone"
                 placeholder="Ingresa tu numero de telefono"
-                id="telefono"
               />
             </Form.Group>
             <Button variant="primary" type="submit">

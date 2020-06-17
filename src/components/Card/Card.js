@@ -8,7 +8,8 @@ import FavoriteButton from "../FavoriteButton";
 import { priceSplitter } from "../../utils/numberFormat";
 import { getIndex } from "../../utils/getIndex";
 import { ReactComponent as Time } from "../../assets/img/tiempo.svg";
-import { POSTINGS_STORAGE } from "../../utils/constants";
+import { POSTINGS_FAVORITE_STORAGE } from "../../utils/constants";
+import { POSTINGS_CONTACTED_STORAGE } from "../../utils/constants";
 
 export default function Card(props) {
   const {
@@ -79,10 +80,32 @@ export default function Card(props) {
       updateAllPosting(allConfigurationArray);
       setFavorite(true);
     }
-    localStorage.setItem(POSTINGS_STORAGE, JSON.stringify(getAllPosting()));
+    localStorage.setItem(
+      POSTINGS_FAVORITE_STORAGE,
+      JSON.stringify(getAllPosting())
+    );
   };
 
-  const addContacted = () => {};
+  const addContacted = () => {
+    console.log("presione contactar");
+    let item = {};
+    let allConfigurationArray = [];
+    if (getAllPosting) {
+      allConfigurationArray = getAllPosting();
+    }
+    item = {
+      id: posting.posting_id,
+      isFavorite: favorite,
+      isContacted: !contacted,
+    };
+    allConfigurationArray.push(item);
+    updateAllPosting(allConfigurationArray);
+    setContacted(true);
+    localStorage.setItem(
+      POSTINGS_CONTACTED_STORAGE,
+      JSON.stringify(getAllPosting())
+    );
+  };
 
   return (
     <>
@@ -140,12 +163,14 @@ export default function Card(props) {
                   </Button>
                   {!contacted ? (
                     <ModalContact
+                      addContacted={addContacted}
                       posting={posting}
                       show={modalShow}
                       onHide={() => setModalShow(false)}
                     />
                   ) : (
                     <ModalInformation
+                      addContacted={addContacted}
                       show={modalShow}
                       onHide={() => setModalShow(false)}
                     />
