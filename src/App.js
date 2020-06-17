@@ -19,9 +19,11 @@ function App() {
     setOperation(valueOperation);
   };
 
+  const reloadListForSearch = () => {};
+
   return (
     <div className="App mt-5">
-      <div className="row">
+      <div className="row" style={{ marginLeft: 0, marginRight: 0 }}>
         <div className="col-sm-4 d-flex flex-row-reverse">
           <Sidebar reloadList={reloadList} />
         </div>

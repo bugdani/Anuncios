@@ -11,6 +11,11 @@ export default function Sidebar(props) {
     reloadList(operation);
   }, [operation]);
 
+  const handleInputChange = (event) => {
+    const query = event.currentTarget.value;
+    console.log(query);
+  };
+
   return (
     <>
       <Card className="sidebar p-2" style={{ maxWidth: 300, maxHeight: 450 }}>
@@ -33,6 +38,7 @@ export default function Sidebar(props) {
                       className="form-control sidebar__body__search__input"
                       type="text"
                       placeholder="Buscar por direccion"
+                      onChange={handleInputChange}
                     />
                     <button
                       type="submit"

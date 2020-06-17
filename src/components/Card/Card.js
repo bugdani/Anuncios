@@ -10,8 +10,6 @@ import { ReactComponent as Time } from "../../assets/img/tiempo.svg";
 export default function Card(props) {
   const { posting, operation } = props;
   const [modalShow, setModalShow] = useState(false);
-
-  const [addFavorite, setAddFavorite] = useState(false);
   const [contacted, setContacted] = useState(false);
 
   const getExpenses = (expense) => {
