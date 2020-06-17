@@ -4,17 +4,21 @@ import moment from "moment";
 import { Button } from "react-bootstrap";
 import ModalContact from "../Modal";
 import ModalInformation from "../ModalInformation";
+import { priceSplitter } from "../../utils/numberFormat";
+import { ReactComponent as Time } from "../../assets/img/tiempo.svg";
 
 export default function Card(props) {
-  const { posting } = props;
+  const { posting, operation } = props;
   const [modalShow, setModalShow] = useState(false);
-  const contactado = true;
+
+  const [addFavorite, setAddFavorite] = useState(false);
+  const [contacted, setContacted] = useState(false);
 
   const getExpenses = (expense) => {
     if (!expense) {
       return `Sin Expensas`;
     } else {
-      return `+ ${expense.amount} Expensas`;
+      return `+ ${priceSplitter(expense.amount)} Expensas`;
     }
   };
 
@@ -31,11 +35,27 @@ export default function Card(props) {
     }
   };
 
+  const setInvisible = (valueOperation, valuePosting) => {
+    if (valueOperation === 4) {
+      return "";
+    } else if (valueOperation !== valuePosting) {
+      return "none";
+    }
+  };
+
+  //getConfigPosting(posting);
+
   return (
     <>
       <div
         className={`card mb-3 ${posting.publication_plan.toLowerCase()}`}
-        style={{ maxWidth: 900 }}
+        style={{
+          maxWidth: 900,
+          display: setInvisible(
+            operation,
+            posting.operation_type.operation_type_id
+          ),
+        }}
       >
         <div className="row no-gutters">
           <div className="col-md-4">
@@ -50,7 +70,7 @@ export default function Card(props) {
             <img src={posting.posting_picture} className="card-img" alt="..." />
             <div className="price-body text-left">
               <p className="price">
-                $ {posting.posting_prices[0].price.amount}
+                $ {priceSplitter(posting.posting_prices[0].price.amount)}
               </p>
               <p className="expenses">
                 {getExpenses(posting.posting_prices[0].expenses)}
@@ -69,6 +89,7 @@ export default function Card(props) {
               <div className="form-row">
                 <div className="col">
                   <p className="card-text font-weight-bold">
+                    <Time style={{ width: 18, height: 18, marginRight: 8 }} />
                     {getDifferenceDays(posting.publish_date)}
                   </p>
                 </div>
@@ -79,8 +100,9 @@ export default function Card(props) {
                   >
                     Contactar
                   </Button>
-                  {!contactado ? (
+                  {!contacted ? (
                     <ModalContact
+                      posting={posting}
                       show={modalShow}
                       onHide={() => setModalShow(false)}
                     />

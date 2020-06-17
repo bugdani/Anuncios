@@ -3,6 +3,19 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { POSTINGS_STORAGE } from "../../utils/constants";
 
 export default function ModalContact(props) {
+  const { posting } = props;
+
+  const handleFormSubmit = (e) => {
+    const configPosting = {};
+    configPosting.posting_id = posting.posting_id;
+    configPosting.contacted = true;
+    if (configPosting.favorite === undefined) {
+      configPosting.favorite = false;
+    }
+    //const allPostingArray.push(configPosting);
+    localStorage.setItem(POSTINGS_STORAGE, JSON.stringify(configPosting));
+  };
+
   return (
     <>
       <Modal
@@ -17,7 +30,7 @@ export default function ModalContact(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleFormSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Dirección de email</Form.Label>
               <Form.Control
@@ -33,6 +46,7 @@ export default function ModalContact(props) {
               <Form.Control
                 type="phone"
                 placeholder="Ingresa tu numero de telefono"
+                id="telefono"
               />
             </Form.Group>
             <Button variant="primary" type="submit">
