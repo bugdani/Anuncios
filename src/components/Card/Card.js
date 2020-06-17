@@ -4,13 +4,16 @@ import moment from "moment";
 import { Button } from "react-bootstrap";
 import ModalContact from "../Modal";
 import ModalInformation from "../ModalInformation";
+import FavoriteButton from "../FavoriteButton";
 import { priceSplitter } from "../../utils/numberFormat";
 import { ReactComponent as Time } from "../../assets/img/tiempo.svg";
+import { POSTINGS_STORAGE } from "../../utils/constants";
 
 export default function Card(props) {
   const { posting, operation, querySearch } = props;
   const [modalShow, setModalShow] = useState(false);
   const [contacted, setContacted] = useState(false);
+  const [allConfiguration, setAllConfiguration] = useState([]);
 
   const getExpenses = (expense) => {
     if (!expense) {
@@ -37,10 +40,8 @@ export default function Card(props) {
     console.log(valueOperation, valueQuerySearch);
 
     if (valueOperation === 4 && valueQuerySearch === "") {
-      //NO HAY FILTRO
       return "";
     } else if (valueQuerySearch !== "") {
-      //FILTRO POR BUSQUEDA
       if (posting.posting_location.address.includes(valueQuerySearch)) {
         return "";
       } else {
@@ -50,6 +51,18 @@ export default function Card(props) {
       return "none";
     }
   };
+
+  const deleteFavorite = (index) => {
+    allConfiguration.splice(index, 1);
+    setAllConfiguration(allConfiguration);
+    localStorage.setItem(POSTINGS_STORAGE, JSON.stringify(allConfiguration));
+  };
+
+  const addFavorite = () => {
+    console.log("agregar como favorito");
+  };
+
+  const addContacted = () => {};
 
   //getConfigPosting(posting);
 
@@ -70,7 +83,9 @@ export default function Card(props) {
                   {posting.publication_plan}
                 </p>
               </div>
-              <div className="col text-right"></div>
+              <div className="col text-right">
+                <FavoriteButton addFavorite={addFavorite} />
+              </div>
             </div>
             <img src={posting.posting_picture} className="card-img" alt="..." />
             <div className="price-body text-left">
