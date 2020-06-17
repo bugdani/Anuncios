@@ -22,6 +22,8 @@ function App() {
   };
 
   const reloadListForSearch = (query) => {
+    console.log(query);
+
     setOperation(4);
     setQuerySearch(query);
   };
@@ -44,7 +46,7 @@ function App() {
                 posting={posting}
                 key={posting.posting_id}
                 operation={operation}
-                querySearch={""}
+                querySearch={querySearch}
               />
             ))
           )}
