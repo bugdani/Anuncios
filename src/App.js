@@ -10,10 +10,9 @@ function App() {
   const [reloadPostings, setReloadPostings] = useState(false);
   const [operation, setOperation] = useState(4);
   const [querySearch, setQuerySearch] = useState("");
+  const [allConfiguration, setAllConfiguration] = useState([]);
 
-  useEffect(() => {
-    console.log(reloadPostings);
-  }, [reloadPostings]);
+  useEffect(() => {}, [reloadPostings]);
 
   const reloadList = (valueOperation) => {
     setReloadPostings(true);
@@ -26,6 +25,14 @@ function App() {
 
     setOperation(4);
     setQuerySearch(query);
+  };
+
+  const getAllPosting = () => {
+    return allConfiguration;
+  };
+
+  const updateAllPosting = (newConfigurations) => {
+    setAllConfiguration(newConfigurations);
   };
 
   return (
@@ -47,6 +54,8 @@ function App() {
                 key={posting.posting_id}
                 operation={operation}
                 querySearch={querySearch}
+                getAllPosting={getAllPosting}
+                updateAllPosting={updateAllPosting}
               />
             ))
           )}

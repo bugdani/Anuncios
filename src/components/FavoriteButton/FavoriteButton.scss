@@ -1,0 +1,33 @@
+.icon-not-favorite {
+    width: 13px;
+    height: 13px;
+    fill: #aaa;
+    &:hover {
+        fill: red;
+        background: #ffffff;
+    }
+}
+
+.icon-favorite {
+    width: 13px;
+    height: 13px;
+    fill: red;
+    &:hover {
+        fill: #aaa;
+        background: #ffffff;
+    }
+}
+
+.btn-circle.btn-sm {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    font-size: 8px;
+    text-align: center;
+    margin-top: 5px;
+    background: #ffffff;
+    &:hover {
+        background: #ffffff;
+    }
+}

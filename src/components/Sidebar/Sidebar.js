@@ -13,8 +13,6 @@ export default function Sidebar(props) {
   }, [operation]);
 
   const handleInputChange = (event) => {
-    console.log(event);
-
     const query = event.currentTarget.value;
     setQuerySearch(query);
     reloadListForSearch(querySearch);
