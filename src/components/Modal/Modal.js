@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { POSTINGS_STORAGE } from "../../utils/constants";
 
 export default function ModalContact(props) {
   const { posting, addContacted } = props;
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
 
   const handleFormSubmit = (event) => {
     addContacted();
