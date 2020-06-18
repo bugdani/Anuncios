@@ -42,13 +42,6 @@ export default function Sidebar(props) {
                       placeholder="Buscar por direccion"
                       onChange={handleInputChange}
                     />
-                    <button
-                      type="button"
-                      className="btn btn-light sidebar__body__search__button"
-                      onClick={() => reloadListForSearch(querySearch)}
-                    >
-                      <Search className="sidebar__body__search__button-icon" />
-                    </button>
                   </div>
                 </div>
               </Accordion.Collapse>
