@@ -111,7 +111,7 @@ export default function Card(props) {
   return (
     <>
       <div
-        className={`card mb-3 ${posting.publication_plan.toLowerCase()} shadow p-3 bg-white rounded`}
+        className={`card mb-3 ${posting.publication_plan.toLowerCase()} shadow bg-white rounded`}
         style={{
           maxWidth: 900,
           display: setInvisible(operation, querySearch),

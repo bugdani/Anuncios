@@ -6,7 +6,6 @@ import Loading from "./components/Loading";
 import Sidebar from "./components/Sidebar";
 import { getInitialConfig } from "./utils/getInitialConfig";
 import { POSTINGS_FAVORITE_STORAGE } from "./utils/constants";
-import { POSTINGS_CONTACTED_STORAGE } from "./utils/constants";
 
 function App() {
   const postingsResult = useFetch(URL_API_POSTINGS, null);
@@ -33,7 +32,11 @@ function App() {
   };
 
   const getAllPosting = () => {
-    return allConfiguration;
+    if (allConfiguration !== null) {
+      return allConfiguration;
+    } else {
+      return [];
+    }
   };
 
   const updateAllPosting = (newConfigurations) => {
