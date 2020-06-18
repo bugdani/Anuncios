@@ -1,0 +1,55 @@
+.card {
+    .card-title {
+        color: #1ec6ff;
+        font-size: 16px;
+    }
+    &__contact-button {
+        background: coral !important;
+        color: #ffffff !important;
+    }
+    .card-subtitle {
+        font-size: 16px;
+    }
+    .card-description {
+        font-size: 14px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+.superhighlighted {
+    border-top: solid 3px #861ace !important;
+}
+
+.highlighted {
+    border-top: solid 3px #1ace5a !important;
+}
+
+.price-body {
+    margin-top: 15px;
+    padding-left: 20px;
+    border-right: solid 2px #a9bd93;
+}
+
+.image-price-expense {
+    width: 300px;
+}
+
+.price {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.header-image {
+    position: absolute;
+    width: 100%;
+    .card-text {
+        color: #ffffff;
+    }
+}
+
+.publication_plan {
+    margin-left: 5px;
+    margin-top: 5px;
+}
