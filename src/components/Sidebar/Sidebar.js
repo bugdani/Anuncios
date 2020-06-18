@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Sidebar.scss";
-import { ReactComponent as Search } from "../../assets/img/buscar.svg";
+import { ReactComponent as Arrow } from "../../assets/img/flecha.svg";
 import { Accordion, Card, Form, Col } from "react-bootstrap";
 
 export default function Sidebar(props) {
@@ -32,6 +32,10 @@ export default function Sidebar(props) {
                 className="sidebar__body__search__title"
               >
                 Direccion
+                <Arrow
+                  className="Arrow float-right"
+                  style={{ width: 20, height: 20 }}
+                />
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
                 <div className="form-row">
@@ -42,13 +46,6 @@ export default function Sidebar(props) {
                       placeholder="Buscar por direccion"
                       onChange={handleInputChange}
                     />
-                    <button
-                      type="button"
-                      className="btn btn-light sidebar__body__search__button"
-                      onClick={() => reloadListForSearch(querySearch)}
-                    >
-                      <Search className="sidebar__body__search__button-icon" />
-                    </button>
                   </div>
                 </div>
               </Accordion.Collapse>
@@ -63,10 +60,15 @@ export default function Sidebar(props) {
                 className="sidebar__body__type-operation__title"
               >
                 Tipo de operacion
+                <Arrow
+                  className="arrow float-right"
+                  style={{ width: 20, height: 20 }}
+                />
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
                 <Col sm={10}>
                   <Form.Check
+                    className="radio-item"
                     type="radio"
                     label="Comprar"
                     name="formHorizontalRadios"

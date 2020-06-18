@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Card.scss";
 import moment from "moment";
 import { Button } from "react-bootstrap";
@@ -18,10 +18,14 @@ export default function Card(props) {
     querySearch,
     getAllPosting,
     updateAllPosting,
+    getInitialConfigFavorite,
   } = props;
   const [modalShow, setModalShow] = useState(false);
   const [contacted, setContacted] = useState(false);
-  const [favorite, setFavorite] = useState(false);
+  const [favorite, setFavorite] = useState(getInitialConfigFavorite);
+  //const [favorite, setFavorite] = useState(false);
+  const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
+  const allFavoriteArray = JSON.parse(allFavoriteStorage);
 
   const getExpenses = (expense) => {
     if (!expense) {
@@ -65,7 +69,7 @@ export default function Card(props) {
     }
     if (favorite) {
       allConfigurationArray.splice(
-        getIndex(allConfigurationArray, posting.posting_id),
+        getIndex(allFavoriteArray, posting.posting_id),
         1
       );
       updateAllPosting(allConfigurationArray);
@@ -73,8 +77,7 @@ export default function Card(props) {
     } else {
       item = {
         id: posting.posting_id,
-        isFavorite: !favorite,
-        isContacted: contacted,
+        preference: !favorite,
       };
       allConfigurationArray.push(item);
       updateAllPosting(allConfigurationArray);
@@ -87,7 +90,6 @@ export default function Card(props) {
   };
 
   const addContacted = () => {
-    console.log("presione contactar");
     let item = {};
     let allConfigurationArray = [];
     if (getAllPosting) {
@@ -95,8 +97,7 @@ export default function Card(props) {
     }
     item = {
       id: posting.posting_id,
-      isFavorite: favorite,
-      isContacted: !contacted,
+      preference: !contacted,
     };
     allConfigurationArray.push(item);
     updateAllPosting(allConfigurationArray);
@@ -110,7 +111,7 @@ export default function Card(props) {
   return (
     <>
       <div
-        className={`card mb-3 ${posting.publication_plan.toLowerCase()} shadow p-3 bg-white rounded`}
+        className={`card mb-3 ${posting.publication_plan.toLowerCase()} shadow bg-white rounded`}
         style={{
           maxWidth: 900,
           display: setInvisible(operation, querySearch),

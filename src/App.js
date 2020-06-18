@@ -4,13 +4,17 @@ import { URL_API_POSTINGS } from "./utils/constants";
 import Card from "./components/Card";
 import Loading from "./components/Loading";
 import Sidebar from "./components/Sidebar";
+import { getInitialConfig } from "./utils/getInitialConfig";
+import { POSTINGS_FAVORITE_STORAGE } from "./utils/constants";
 
 function App() {
   const postingsResult = useFetch(URL_API_POSTINGS, null);
   const [reloadPostings, setReloadPostings] = useState(false);
   const [operation, setOperation] = useState(4);
   const [querySearch, setQuerySearch] = useState("");
-  const [allConfiguration, setAllConfiguration] = useState([]);
+  const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
+  const allFavoriteArray = JSON.parse(allFavoriteStorage);
+  const [allConfiguration, setAllConfiguration] = useState(allFavoriteArray);
 
   useEffect(() => {}, [reloadPostings]);
 
@@ -28,7 +32,11 @@ function App() {
   };
 
   const getAllPosting = () => {
-    return allConfiguration;
+    if (allConfiguration !== null) {
+      return allConfiguration;
+    } else {
+      return [];
+    }
   };
 
   const updateAllPosting = (newConfigurations) => {
@@ -51,11 +59,14 @@ function App() {
             postingsResult.result.map((posting, index) => (
               <Card
                 posting={posting}
-                key={posting.posting_id}
                 operation={operation}
                 querySearch={querySearch}
                 getAllPosting={getAllPosting}
                 updateAllPosting={updateAllPosting}
+                getInitialConfigFavorite={getInitialConfig(
+                  allFavoriteArray,
+                  posting.posting_id
+                )}
               />
             ))
           )}
