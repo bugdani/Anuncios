@@ -39,6 +39,13 @@ export default function Card(props) {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem(
+      POSTINGS_FAVORITE_STORAGE,
+      JSON.stringify(allFavorites)
+    );
+  }, [allFavorites]);
+
   const toggleFavorite = () => {
     setAllFavorites(
       allFavorites.map((c) =>
