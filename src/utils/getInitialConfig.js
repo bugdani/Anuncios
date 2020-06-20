@@ -14,14 +14,14 @@ export const getInitialConfig = (allConfigurationArray, posting_id) => {
     */
     value = allConfigurationArray.filter((config) => config.id === posting_id);
     if (value.length > 0) {
-      console.log(`${posting_id} > ${value[0].preference}`);
+      //console.log(`${posting_id} > ${value[0].preference}`);
       return value[0].preference;
     } else {
-      console.log(`${posting_id} > false`);
+      //console.log(`${posting_id} > false`);
       return false;
     }
   } else {
-    console.log(`no hay array`);
+    //console.log(`no hay array`);
     return false;
   }
 };

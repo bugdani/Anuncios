@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Card.scss";
 import moment from "moment";
 import { Button } from "react-bootstrap";
@@ -24,20 +24,20 @@ export default function Card(props) {
   const [contacted, setContacted] = useState(false);
   //const [favorite, setFavorite] = useState(getInitialConfigFavorite);
   const [favorite, setFavorite] = useState(false);
-  const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
-  const allFavoriteArray = JSON.parse(allFavoriteStorage);
+  //const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
+  //const allFavoriteArray = JSON.parse(allFavoriteStorage);
 
   //REFACTOR LOCALSTORAGE CONST
-  const [allFavorites, setAllFavorites] = useState([{}]);
 
-  const toggleFavorite = () => {
-    setAllFavorites(
-      allFavorites.map((c) =>
-        c.id === posting.posting_id ? { ...c, preference: !c.preference } : c
-      )
-    );
-    console.log(allFavorites);
-  };
+  //Ver de pasar a App porque sino se esta cargando 3 veces
+  const [allFavorites, setAllFavorites] = useState([]);
+
+  useEffect(() => {
+    let allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
+    if (allFavoriteStorage != null) {
+      setAllFavorites(JSON.parse(allFavoriteStorage));
+    }
+  }, []);
 
   const getExpenses = (expense) => {
     if (!expense) {
@@ -80,12 +80,10 @@ export default function Card(props) {
       allConfigurationArray = getAllPosting();
     }
     if (favorite) {
-      allConfigurationArray.splice(
-        getIndex(allFavoriteArray, posting.posting_id),
-        1
-      );
-      updateAllPosting(allConfigurationArray);
-      setFavorite(!favorite);
+      //allConfigurationArray.splice(
+      //getIndex(allFavoriteArray, posting.posting_id),1);
+      //updateAllPosting(allConfigurationArray);
+      //setFavorite(!favorite);
     } else {
       item = {
         id: posting.posting_id,
@@ -150,7 +148,11 @@ export default function Card(props) {
                 </p>
               </div>
               <div className="col text-right">
-                <FavoriteButton addFavorite={addFavorite} favorite={favorite} />
+                <FavoriteButton
+                  addFavorite={addFavorite}
+                  favorite={favorite}
+                  toggleFavorite={toggleFavorite}
+                />
               </div>
             </div>
             <img src={posting.posting_picture} className="card-img" alt="..." />

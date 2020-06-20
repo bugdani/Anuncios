@@ -16,6 +16,27 @@ function App() {
   const allFavoriteArray = JSON.parse(allFavoriteStorage);
   const [allConfiguration, setAllConfiguration] = useState(allFavoriteArray);
 
+  //REFACTOR LOCALSTORAGE
+  // const [allFavorites, setAllFavorites] = useState([]);
+
+  // useEffect(() => {
+  //   let allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
+  //   if (allFavoriteStorage != null) {
+  //     console.log(`cargue setAllFavorites`);
+  //     setAllFavorites(JSON.parse(allFavoriteStorage));
+  //   }
+  // }, []);
+
+  // const toggleFavorite = () => {
+  //   setAllFavorites(
+  //     allFavorites.map((c) =>
+  //       c.id === posting.posting_id ? { ...c, preference: !c.preference } : c
+  //     )
+  //   );
+  //   console.log(allFavorites);
+  //   //setFavorite(!favorite);
+  // };
+
   useEffect(() => {}, [reloadPostings]);
 
   const reloadList = (valueOperation) => {
