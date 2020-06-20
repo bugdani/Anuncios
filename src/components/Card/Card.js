@@ -20,10 +20,7 @@ export default function Card(props) {
   } = props;
   const [modalShow, setModalShow] = useState(false);
   const [contacted, setContacted] = useState(false);
-  //const [favorite, setFavorite] = useState(getInitialConfigFavorite);
   const [favorite, setFavorite] = useState(false);
-  //const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
-  //const allFavoriteArray = JSON.parse(allFavoriteStorage);
 
   const getExpenses = (expense) => {
     if (!expense) {
