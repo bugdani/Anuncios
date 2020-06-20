@@ -32,6 +32,7 @@ export default function Card(props) {
   //Ver de pasar a App porque sino se esta cargando 3 veces
   const [allFavorites, setAllFavorites] = useState([]);
 
+  //Carga AllFavorites al inicio de la aplicacion con todos los favoritos que tengo en localstorage
   useEffect(() => {
     let allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
     if (allFavoriteStorage != null) {
@@ -39,6 +40,7 @@ export default function Card(props) {
     }
   }, []);
 
+  //Guarda en localstorage todos los items cuando se agrega uno
   useEffect(() => {
     localStorage.setItem(
       POSTINGS_FAVORITE_STORAGE,
@@ -46,6 +48,7 @@ export default function Card(props) {
     );
   }, [allFavorites]);
 
+  //Cambia el valor en true/false cuando se presiona favorito
   const toggleFavorite = () => {
     setAllFavorites(
       allFavorites.map((c) =>
