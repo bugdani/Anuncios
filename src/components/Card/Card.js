@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Card.scss";
 import moment from "moment";
 import { Button } from "react-bootstrap";
@@ -6,9 +6,7 @@ import ModalContact from "../Modal";
 import ModalInformation from "../ModalInformation";
 import FavoriteButton from "../FavoriteButton";
 import { priceSplitter } from "../../utils/numberFormat";
-import { getIndex } from "../../utils/getIndex";
 import { ReactComponent as Time } from "../../assets/img/tiempo.svg";
-import { POSTINGS_FAVORITE_STORAGE } from "../../utils/constants";
 import { POSTINGS_CONTACTED_STORAGE } from "../../utils/constants";
 
 export default function Card(props) {
@@ -18,7 +16,6 @@ export default function Card(props) {
     querySearch,
     getAllPosting,
     updateAllPosting,
-    getInitialConfigFavorite,
     toggleFavorite,
   } = props;
   const [modalShow, setModalShow] = useState(false);
@@ -60,32 +57,6 @@ export default function Card(props) {
     } else if (valueOperation !== posting.operation_type.operation_type_id) {
       return "none";
     }
-  };
-
-  const addFavorite = () => {
-    let item = {};
-    let allConfigurationArray = [];
-    if (getAllPosting) {
-      allConfigurationArray = getAllPosting();
-    }
-    if (favorite) {
-      //allConfigurationArray.splice(
-      //getIndex(allFavoriteArray, posting.posting_id),1);
-      //updateAllPosting(allConfigurationArray);
-      //setFavorite(!favorite);
-    } else {
-      item = {
-        id: posting.posting_id,
-        preference: !favorite,
-      };
-      allConfigurationArray.push(item);
-      updateAllPosting(allConfigurationArray);
-      setFavorite(true);
-    }
-    localStorage.setItem(
-      POSTINGS_FAVORITE_STORAGE,
-      JSON.stringify(getAllPosting())
-    );
   };
 
   const addContacted = () => {

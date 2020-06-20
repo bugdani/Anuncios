@@ -38,11 +38,9 @@ function App() {
   //Cambia el valor en true/false cuando se presiona favorito
   const toggleFavorite = (id) => {
     if (!allFavorites.find((c) => c.id === id)) {
-      //Agrego nuevo favorito
       console.log(`Agrego nuevo favorito> ${id} `);
       setAllFavorites([...allFavorites, { id: id, preference: true }]);
     } else {
-      //Modifico Favorito
       console.log(`Modifo favorito> ${id} `);
       setAllFavorites(
         allFavorites.map((c) =>
