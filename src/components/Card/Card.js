@@ -108,6 +108,16 @@ export default function Card(props) {
     );
   };
 
+  const translateText = (publication_plan) => {
+    if (publication_plan === "SUPERHIGHLIGHTED") {
+      return "Super destacado";
+    } else if (publication_plan === "HIGHLIGHTED") {
+      return "Destacado";
+    } else {
+      return "Simple";
+    }
+  };
+
   return (
     <>
       <div
@@ -122,7 +132,7 @@ export default function Card(props) {
             <div className="form-row header-image">
               <div className="col text-left">
                 <p className="card-text badge badge-pill badge-info publication_plan">
-                  {posting.publication_plan}
+                  {translateText(posting.publication_plan)}
                 </p>
               </div>
               <div className="col text-right">
