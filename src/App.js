@@ -16,26 +16,41 @@ function App() {
   const allFavoriteArray = JSON.parse(allFavoriteStorage);
   const [allConfiguration, setAllConfiguration] = useState(allFavoriteArray);
 
-  //REFACTOR LOCALSTORAGE
-  // const [allFavorites, setAllFavorites] = useState([]);
+  //Ver de pasar a App=
+  const [allFavorites, setAllFavorites] = useState([]);
 
-  // useEffect(() => {
-  //   let allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
-  //   if (allFavoriteStorage != null) {
-  //     console.log(`cargue setAllFavorites`);
-  //     setAllFavorites(JSON.parse(allFavoriteStorage));
-  //   }
-  // }, []);
+  //Carga AllFavorites al inicio de la aplicacion con todos los favoritos que tengo en localstorage
+  useEffect(() => {
+    let allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
+    if (allFavoriteStorage != null) {
+      setAllFavorites(JSON.parse(allFavoriteStorage));
+    }
+  }, []);
 
-  // const toggleFavorite = () => {
-  //   setAllFavorites(
-  //     allFavorites.map((c) =>
-  //       c.id === posting.posting_id ? { ...c, preference: !c.preference } : c
-  //     )
-  //   );
-  //   console.log(allFavorites);
-  //   //setFavorite(!favorite);
-  // };
+  //Guarda en localstorage todos los items cuando se agrega uno
+  useEffect(() => {
+    localStorage.setItem(
+      POSTINGS_FAVORITE_STORAGE,
+      JSON.stringify(allFavorites)
+    );
+  }, [allFavorites]);
+
+  //Cambia el valor en true/false cuando se presiona favorito
+  const toggleFavorite = (id) => {
+    if (!allFavorites.find((c) => c.id === id)) {
+      //Agrego nuevo favorito
+      console.log(`Agrego nuevo favorito> ${id} `);
+      setAllFavorites([...allFavorites, { id: id, preference: true }]);
+    } else {
+      //Modifico Favorito
+      console.log(`Modifo favorito> ${id} `);
+      setAllFavorites(
+        allFavorites.map((c) =>
+          c.id === id ? { ...c, preference: !c.preference } : c
+        )
+      );
+    }
+  };
 
   useEffect(() => {}, [reloadPostings]);
 
@@ -88,6 +103,7 @@ function App() {
                   allFavoriteArray,
                   posting.posting_id
                 )}
+                toggleFavorite={toggleFavorite}
               />
             ))
           )}

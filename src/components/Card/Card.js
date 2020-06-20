@@ -19,6 +19,7 @@ export default function Card(props) {
     getAllPosting,
     updateAllPosting,
     getInitialConfigFavorite,
+    toggleFavorite,
   } = props;
   const [modalShow, setModalShow] = useState(false);
   const [contacted, setContacted] = useState(false);
@@ -26,37 +27,6 @@ export default function Card(props) {
   const [favorite, setFavorite] = useState(false);
   //const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
   //const allFavoriteArray = JSON.parse(allFavoriteStorage);
-
-  //REFACTOR LOCALSTORAGE CONST
-
-  //Ver de pasar a App porque sino se esta cargando 3 veces
-  const [allFavorites, setAllFavorites] = useState([]);
-
-  //Carga AllFavorites al inicio de la aplicacion con todos los favoritos que tengo en localstorage
-  useEffect(() => {
-    let allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
-    if (allFavoriteStorage != null) {
-      setAllFavorites(JSON.parse(allFavoriteStorage));
-    }
-  }, []);
-
-  //Guarda en localstorage todos los items cuando se agrega uno
-  useEffect(() => {
-    localStorage.setItem(
-      POSTINGS_FAVORITE_STORAGE,
-      JSON.stringify(allFavorites)
-    );
-  }, [allFavorites]);
-
-  //Cambia el valor en true/false cuando se presiona favorito
-  const toggleFavorite = () => {
-    setAllFavorites(
-      allFavorites.map((c) =>
-        c.id === posting.posting_id ? { ...c, preference: !c.preference } : c
-      )
-    );
-    setFavorite(!favorite);
-  };
 
   const getExpenses = (expense) => {
     if (!expense) {
@@ -168,7 +138,7 @@ export default function Card(props) {
               </div>
               <div className="col text-right">
                 <FavoriteButton
-                  addFavorite={addFavorite}
+                  id={posting.posting_id}
                   favorite={favorite}
                   toggleFavorite={toggleFavorite}
                 />
