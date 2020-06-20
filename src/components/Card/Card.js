@@ -39,6 +39,15 @@ export default function Card(props) {
     }
   }, []);
 
+  const toggleFavorite = () => {
+    setAllFavorites(
+      allFavorites.map((c) =>
+        c.id === posting.posting_id ? { ...c, preference: !c.preference } : c
+      )
+    );
+    setFavorite(!favorite);
+  };
+
   const getExpenses = (expense) => {
     if (!expense) {
       return `Sin Expensas`;
