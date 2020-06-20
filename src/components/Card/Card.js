@@ -22,10 +22,22 @@ export default function Card(props) {
   } = props;
   const [modalShow, setModalShow] = useState(false);
   const [contacted, setContacted] = useState(false);
-  const [favorite, setFavorite] = useState(getInitialConfigFavorite);
-  //const [favorite, setFavorite] = useState(false);
+  //const [favorite, setFavorite] = useState(getInitialConfigFavorite);
+  const [favorite, setFavorite] = useState(false);
   const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
   const allFavoriteArray = JSON.parse(allFavoriteStorage);
+
+  //REFACTOR LOCALSTORAGE CONST
+  const [allFavorites, setAllFavorites] = useState([{}]);
+
+  const toggleFavorite = () => {
+    setAllFavorites(
+      allFavorites.map((c) =>
+        c.id === posting.posting_id ? { ...c, preference: !c.preference } : c
+      )
+    );
+    console.log(allFavorites);
+  };
 
   const getExpenses = (expense) => {
     if (!expense) {
@@ -117,6 +129,8 @@ export default function Card(props) {
       return "Simple";
     }
   };
+
+  //REFACTOR LOCALSTORAGE
 
   return (
     <>
