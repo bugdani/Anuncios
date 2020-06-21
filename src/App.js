@@ -4,7 +4,6 @@ import { URL_API_POSTINGS } from "./utils/constants";
 import Card from "./components/Card";
 import Loading from "./components/Loading";
 import Sidebar from "./components/Sidebar";
-import { getInitialConfig } from "./utils/getInitialConfig";
 import { POSTINGS_FAVORITE_STORAGE } from "./utils/constants";
 
 function App() {
@@ -16,7 +15,6 @@ function App() {
   const allFavoriteArray = JSON.parse(allFavoriteStorage);
   const [allConfiguration, setAllConfiguration] = useState(allFavoriteArray);
 
-  //Ver de pasar a App=
   const [allFavorites, setAllFavorites] = useState([]);
 
   //Carga AllFavorites al inicio de la aplicacion con todos los favoritos que tengo en localstorage
@@ -97,11 +95,8 @@ function App() {
                 querySearch={querySearch}
                 getAllPosting={getAllPosting}
                 updateAllPosting={updateAllPosting}
-                getInitialConfigFavorite={getInitialConfig(
-                  allFavoriteArray,
-                  posting.posting_id
-                )}
                 toggleFavorite={toggleFavorite}
+                allFavorites={allFavorites}
               />
             ))
           )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Card.scss";
 import moment from "moment";
 import { Button } from "react-bootstrap";
@@ -17,10 +17,27 @@ export default function Card(props) {
     getAllPosting,
     updateAllPosting,
     toggleFavorite,
+    allFavorites,
   } = props;
   const [modalShow, setModalShow] = useState(false);
   const [contacted, setContacted] = useState(false);
   const [favorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    const newValue = allFavorites.filter(
+      (config) => config.id === posting.posting_id
+    );
+    if (newValue.length > 0) {
+      setFavorite(newValue[0].preference);
+    } else {
+      setFavorite(false);
+    }
+  }, []);
+
+  const changeFavorite = (id) => {
+    setFavorite(!favorite);
+    toggleFavorite(id);
+  };
 
   const getExpenses = (expense) => {
     if (!expense) {
@@ -85,8 +102,6 @@ export default function Card(props) {
     }
   };
 
-  //REFACTOR LOCALSTORAGE
-
   return (
     <>
       <div
@@ -108,7 +123,7 @@ export default function Card(props) {
                 <FavoriteButton
                   id={posting.posting_id}
                   favorite={favorite}
-                  toggleFavorite={toggleFavorite}
+                  changeFavorite={changeFavorite}
                 />
               </div>
             </div>
