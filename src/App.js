@@ -11,9 +11,6 @@ function App() {
   const [reloadPostings, setReloadPostings] = useState(false);
   const [operation, setOperation] = useState(4);
   const [querySearch, setQuerySearch] = useState("");
-  const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
-  const allFavoriteArray = JSON.parse(allFavoriteStorage);
-  const [allConfiguration, setAllConfiguration] = useState(allFavoriteArray);
 
   const [allFavorites, setAllFavorites] = useState([]);
 
@@ -36,14 +33,29 @@ function App() {
   //Cambia el valor en true/false cuando se presiona favorito
   const toggleFavorite = (id) => {
     if (!allFavorites.find((c) => c.id === id)) {
-      console.log(`Agrego nuevo favorito> ${id} `);
-      setAllFavorites([...allFavorites, { id: id, preference: true }]);
+      setAllFavorites([
+        ...allFavorites,
+        { id: id, preference: true, contacted: false },
+      ]);
     } else {
-      console.log(`Modifo favorito> ${id} `);
       setAllFavorites(
         allFavorites.map((c) =>
           c.id === id ? { ...c, preference: !c.preference } : c
         )
+      );
+    }
+  };
+
+  //Cambia el valor en true/false cuando se presiona favorito
+  const toggleContacted = (id) => {
+    if (!allFavorites.find((c) => c.id === id)) {
+      setAllFavorites([
+        ...allFavorites,
+        { id: id, preference: false, contacted: true },
+      ]);
+    } else {
+      setAllFavorites(
+        allFavorites.map((c) => (c.id === id ? { ...c, contacted: true } : c))
       );
     }
   };
@@ -59,18 +71,6 @@ function App() {
   const reloadListForSearch = (query) => {
     setOperation(4);
     setQuerySearch(query);
-  };
-
-  const getAllPosting = () => {
-    if (allConfiguration !== null) {
-      return allConfiguration;
-    } else {
-      return [];
-    }
-  };
-
-  const updateAllPosting = (newConfigurations) => {
-    setAllConfiguration(newConfigurations);
   };
 
   return (
@@ -91,8 +91,7 @@ function App() {
                 posting={posting}
                 operation={operation}
                 querySearch={querySearch}
-                getAllPosting={getAllPosting}
-                updateAllPosting={updateAllPosting}
+                toggleContacted={toggleContacted}
                 toggleFavorite={toggleFavorite}
                 allFavorites={allFavorites}
               />

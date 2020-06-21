@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
 export default function ModalContact(props) {
-  const { posting, addContacted } = props;
+  const { addContacted } = props;
 
   const handleFormSubmit = (event) => {
     addContacted();

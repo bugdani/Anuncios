@@ -7,17 +7,15 @@ import ModalInformation from "../ModalInformation";
 import FavoriteButton from "../FavoriteButton";
 import { priceSplitter } from "../../utils/numberFormat";
 import { ReactComponent as Time } from "../../assets/img/tiempo.svg";
-import { POSTINGS_CONTACTED_STORAGE } from "../../utils/constants";
 
 export default function Card(props) {
   const {
     posting,
     operation,
     querySearch,
-    getAllPosting,
-    updateAllPosting,
     toggleFavorite,
     allFavorites,
+    toggleContacted,
   } = props;
   const [modalShow, setModalShow] = useState(false);
   const [contacted, setContacted] = useState(false);
@@ -28,9 +26,13 @@ export default function Card(props) {
       (config) => config.id === posting.posting_id
     );
     if (newValue.length > 0) {
+      console.log(newValue);
+
       setFavorite(newValue[0].preference);
+      setContacted(newValue[0].contacted);
     } else {
       setFavorite(false);
+      setContacted(false);
     }
   }, []);
 
@@ -74,22 +76,8 @@ export default function Card(props) {
   };
 
   const addContacted = () => {
-    let item = {};
-    let allConfigurationArray = [];
-    if (getAllPosting) {
-      allConfigurationArray = getAllPosting();
-    }
-    item = {
-      id: posting.posting_id,
-      preference: !contacted,
-    };
-    allConfigurationArray.push(item);
-    updateAllPosting(allConfigurationArray);
     setContacted(true);
-    localStorage.setItem(
-      POSTINGS_CONTACTED_STORAGE,
-      JSON.stringify(getAllPosting())
-    );
+    toggleContacted(posting.posting_id);
   };
 
   const translateText = (publication_plan) => {
@@ -163,7 +151,6 @@ export default function Card(props) {
                   {!contacted ? (
                     <ModalContact
                       addContacted={addContacted}
-                      posting={posting}
                       show={modalShow}
                       onHide={() => setModalShow(false)}
                     />
