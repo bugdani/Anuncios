@@ -36,14 +36,29 @@ function App() {
   //Cambia el valor en true/false cuando se presiona favorito
   const toggleFavorite = (id) => {
     if (!allFavorites.find((c) => c.id === id)) {
-      console.log(`Agrego nuevo favorito> ${id} `);
-      setAllFavorites([...allFavorites, { id: id, preference: true }]);
+      setAllFavorites([
+        ...allFavorites,
+        { id: id, preference: true, contacted: false },
+      ]);
     } else {
-      console.log(`Modifo favorito> ${id} `);
       setAllFavorites(
         allFavorites.map((c) =>
           c.id === id ? { ...c, preference: !c.preference } : c
         )
+      );
+    }
+  };
+
+  //Cambia el valor en true/false cuando se presiona favorito
+  const toggleContacted = (id) => {
+    if (!allFavorites.find((c) => c.id === id)) {
+      setAllFavorites([
+        ...allFavorites,
+        { id: id, preference: false, contacted: true },
+      ]);
+    } else {
+      setAllFavorites(
+        allFavorites.map((c) => (c.id === id ? { ...c, contacted: true } : c))
       );
     }
   };
@@ -93,6 +108,7 @@ function App() {
                 querySearch={querySearch}
                 getAllPosting={getAllPosting}
                 updateAllPosting={updateAllPosting}
+                toggleContacted={toggleContacted}
                 toggleFavorite={toggleFavorite}
                 allFavorites={allFavorites}
               />
