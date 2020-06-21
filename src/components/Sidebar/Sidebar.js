@@ -12,11 +12,10 @@ export default function Sidebar(props) {
     reloadList(operation);
   }, [operation]);
 
-  const handleInputChange = (event) => {
-    const query = event.currentTarget.value;
-    setQuerySearch(query);
+  useEffect(() => {
+    setOperation(4);
     reloadListForSearch(querySearch);
-  };
+  }, [querySearch]);
 
   return (
     <>
@@ -44,7 +43,7 @@ export default function Sidebar(props) {
                       className="form-control sidebar__body__search__input"
                       type="text"
                       placeholder="Buscar por direccion"
-                      onChange={handleInputChange}
+                      onChange={(e) => setQuerySearch(e.target.value)}
                     />
                   </div>
                 </div>
