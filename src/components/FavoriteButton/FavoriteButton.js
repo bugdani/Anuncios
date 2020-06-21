@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FavoriteButton.scss";
 import { ReactComponent as Favorite } from "../../assets/img/corazon.svg";
 
