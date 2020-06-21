@@ -11,9 +11,6 @@ function App() {
   const [reloadPostings, setReloadPostings] = useState(false);
   const [operation, setOperation] = useState(4);
   const [querySearch, setQuerySearch] = useState("");
-  const allFavoriteStorage = localStorage.getItem(POSTINGS_FAVORITE_STORAGE);
-  const allFavoriteArray = JSON.parse(allFavoriteStorage);
-  const [allConfiguration, setAllConfiguration] = useState(allFavoriteArray);
 
   const [allFavorites, setAllFavorites] = useState([]);
 
@@ -76,18 +73,6 @@ function App() {
     setQuerySearch(query);
   };
 
-  const getAllPosting = () => {
-    if (allConfiguration !== null) {
-      return allConfiguration;
-    } else {
-      return [];
-    }
-  };
-
-  const updateAllPosting = (newConfigurations) => {
-    setAllConfiguration(newConfigurations);
-  };
-
   return (
     <div className="App mt-5">
       <div className="row" style={{ marginLeft: 0, marginRight: 0 }}>
@@ -106,8 +91,6 @@ function App() {
                 posting={posting}
                 operation={operation}
                 querySearch={querySearch}
-                getAllPosting={getAllPosting}
-                updateAllPosting={updateAllPosting}
                 toggleContacted={toggleContacted}
                 toggleFavorite={toggleFavorite}
                 allFavorites={allFavorites}
