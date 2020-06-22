@@ -65,11 +65,9 @@ function App() {
   const reloadList = (valueOperation) => {
     setReloadPostings(true);
     setOperation(valueOperation);
-    setQuerySearch("");
   };
 
   const reloadListForSearch = (query) => {
-    setOperation(4);
     setQuerySearch(query);
   };
 
