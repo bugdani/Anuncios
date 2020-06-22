@@ -12,11 +12,9 @@ export default function Sidebar(props) {
     reloadList(operation);
   }, [operation]);
 
-  const handleInputChange = (event) => {
-    const query = event.currentTarget.value;
-    setQuerySearch(query);
+  useEffect(() => {
     reloadListForSearch(querySearch);
-  };
+  }, [querySearch]);
 
   return (
     <>
@@ -44,7 +42,7 @@ export default function Sidebar(props) {
                       className="form-control sidebar__body__search__input"
                       type="text"
                       placeholder="Buscar por direccion"
-                      onChange={handleInputChange}
+                      onChange={(e) => setQuerySearch(e.target.value)}
                     />
                   </div>
                 </div>
@@ -72,21 +70,21 @@ export default function Sidebar(props) {
                     type="radio"
                     label="Comprar"
                     name="formHorizontalRadios"
-                    id="1"
+                    id="2"
                     onChange={() => setOperation(2)}
                   />
                   <Form.Check
                     type="radio"
                     label="Alquilar"
                     name="formHorizontalRadios"
-                    id="3"
+                    id="1"
                     onChange={() => setOperation(1)}
                   />
                   <Form.Check
                     type="radio"
                     label="Temporal"
                     name="formHorizontalRadios"
-                    id="2"
+                    id="3"
                     onChange={() => setOperation(3)}
                   />
                   <Form.Check
@@ -94,6 +92,7 @@ export default function Sidebar(props) {
                     label="Todos"
                     name="formHorizontalRadios"
                     id="4"
+                    checked={4 === operation}
                     onChange={() => setOperation(4)}
                   />
                 </Col>
