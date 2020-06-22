@@ -13,8 +13,6 @@ export default function Sidebar(props) {
   }, [operation]);
 
   useEffect(() => {
-    console.log();
-
     reloadListForSearch(querySearch);
   }, [querySearch]);
 

@@ -8,10 +8,8 @@ import { POSTINGS_FAVORITE_STORAGE } from "./utils/constants";
 
 function App() {
   const postingsResult = useFetch(URL_API_POSTINGS, null);
-  const [reloadPostings, setReloadPostings] = useState(false);
   const [operation, setOperation] = useState(4);
   const [querySearch, setQuerySearch] = useState("");
-
   const [allFavorites, setAllFavorites] = useState([]);
 
   //Carga AllFavorites al inicio de la aplicacion con todos los favoritos que tengo en localstorage
@@ -59,11 +57,7 @@ function App() {
       );
     }
   };
-
-  useEffect(() => {}, [reloadPostings]);
-
   const reloadList = (valueOperation) => {
-    setReloadPostings(true);
     setOperation(valueOperation);
   };
 
